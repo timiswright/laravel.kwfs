@@ -93,4 +93,23 @@ class Customer extends Model
     {
         $this->attributes['county'] = ucwords(strtolower($value));
     }
+
+    /**
+     * Always clean the phone no when we save it to the database
+     */
+    public function setPhoneAttribute($value)
+    {
+        $this->attributes['phone'] = preg_replace('/[^0-9]/', '', $value);
+    }
+
+    /**
+     * Always clean the phone no when we save it to the database
+     */
+    public function setMobileAttribute($value)
+    {
+        $this->attributes['mobile'] = preg_replace('/[^0-9]/', '', $value);
+    }
+
+    
+
 }

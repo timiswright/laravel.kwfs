@@ -37,7 +37,7 @@
         {!! Form::label('street', 'Street:', ['class' => 'col-sm-1 control-label']) !!}
       </div>
       <div class="col-sm-8">
-        {!! Form::text('street', null, ['class' => 'form-control', 'required' => 'required']) !!}
+        {!! Form::text('street', null, ['class' => 'form-control']) !!}
         <small class="text-danger">{{ $errors->first('street') }}</small>
       </div>
     </div>
@@ -57,7 +57,7 @@
         {!! Form::label('city', 'City:', ['class' => 'col-sm-1 control-label']) !!}
       </div>
       <div class="col-sm-8">
-        {!! Form::text('city', null, ['class' => 'form-control', 'required' => 'required']) !!}
+        {!! Form::text('city', null, ['class' => 'form-control']) !!}
         <small class="text-danger">{{ $errors->first('city') }}</small>
       </div>
     </div>

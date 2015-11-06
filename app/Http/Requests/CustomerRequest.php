@@ -17,6 +17,17 @@ class CustomerRequest extends Request
     }
 
     /**
+     * Sanitize input before validation.
+     *
+     * @return array
+     */
+    public function sanitize()
+    {
+        $this->inputs['phone'] = trim($this->inputs['phone']);
+    }
+
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -25,9 +36,9 @@ class CustomerRequest extends Request
     {
         return [
             'company' => 'sometimes|unique:customers',
+            'fname' => 'required',
+            'lname' => 'required',
             'email' => 'sometimes|email',
-            'phone' => 'sometimes|numeric',
-            'mobile' => 'sometimes|numeric',
         ];
     }
 }
