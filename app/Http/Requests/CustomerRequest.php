@@ -25,8 +25,6 @@ class CustomerRequest extends Request
     {
         return [
             'company' => 'sometimes|unique:customers',
-            'fname' => 'required',
-            'lname' => 'required',
             'email' => 'sometimes|email',
             'phone' => 'sometimes|numeric',
             'mobile' => 'sometimes|numeric',
