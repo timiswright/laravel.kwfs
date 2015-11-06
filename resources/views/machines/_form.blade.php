@@ -6,12 +6,12 @@
         </div>
     <div class="form-group @if($errors->first('sold_date')) has-error @endif">
             {!! Form::label('sold_date', 'Sold Date') !!}
-            {!! Form::date('sold_date', Carbon\Carbon::now(), ['class' => 'form-control', 'required' => 'required']) !!}
+            {!! Form::date('sold_date', Carbon\Carbon::now(), ['class' => 'form-control']) !!}
             <small class="text-danger">{{ $errors->first('sold_date') }}</small>
     </div>
     <div class="form-group @if($errors->first('invoice')) has-error @endif">
             {!! Form::label('invoice', 'Invoice No.') !!}
-            {!! Form::text('invoice', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            {!! Form::text('invoice', null, ['class' => 'form-control']) !!}
             <small class="text-danger">{{ $errors->first('invoice') }}</small>
     </div>
     <div class="form-group">
