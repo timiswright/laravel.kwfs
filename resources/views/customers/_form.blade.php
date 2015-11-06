@@ -2,7 +2,7 @@
   <div class="col-sm-12">
     {!! Form::label('company', 'Company:', ['class' => 'col-sm-1 control-label bold']) !!}
     <div class="col-sm-3">
-        {!! Form::text('company', null, ['class' => 'form-control', 'required' => 'required']) !!}
+        {!! Form::text('company', null, ['class' => 'form-control']) !!}
         <small class="text-danger">{{ $errors->first('company') }}</small>
     </div>
 
@@ -77,7 +77,7 @@
         {!! Form::label('postcode', 'Postcode:', ['class' => 'col-sm-1 control-label']) !!}
       </div>
       <div class="col-sm-8">
-        {!! Form::text('postcode', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Postcode']) !!}
+        {!! Form::text('postcode', null, ['class' => 'form-control', 'placeholder' => 'Postcode']) !!}
         <small class="text-danger">{{ $errors->first('postcode') }}</small>
       </div>
     </div>
