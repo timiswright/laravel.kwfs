@@ -76,7 +76,7 @@
     <div class="row col-md-12">
         <div class="form-group @if($errors->first('notes')) has-error @endif">
             {!! Form::label('notes', 'Extra Notes') !!}
-            {!! Form::textarea('notes', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            {!! Form::textarea('notes', null, ['class' => 'form-control']) !!}
             <small class="text-danger">{{ $errors->first('notes') }}</small>
         </div>
     </div>
