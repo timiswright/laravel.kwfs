@@ -15,7 +15,7 @@
                     <a href="{{ route('machines.index') }}" class="btn btn-info">Back</a>
                 </div>
                 <div class="btn-group pull-right">
-                    {!! Form::submit("Add", ['class' => 'btn btn-primary']) !!}
+                    {!! Form::submit("Save", ['class' => 'btn btn-primary']) !!}
                 </div>
         </div>
     {!! Form::close() !!}      

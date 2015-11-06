@@ -10,12 +10,8 @@
               <tr><td>Bracket:</td><td>{{ $bracket['bracket_type'] }}</td></tr>
               <tr><td>Bucket:</td><td>{{ $bucket['bucket_type'] }}</td></tr>
               <tr><td>Motor:</td><td>{{ $motor['motor_type'] }}</td></tr>
-              @if($motor['sold_date'])
-              <tr><td>Sold Date:</td><td>{{ $motor['sold_date'] }}</td></tr>
-              @endif
-              @if($motor['invoice'])
-              <tr><td>Invoice No.:</td><td>{{ $motor['invoice'] }}</td></tr>
-              @endif
+              <tr><td>Sold Date:</td><td>{{ $machine['sold_date'] }}</td></tr>
+              <tr><td>Invoice No.:</td><td>{{ $machine['invoice'] }}</td></tr>
             </tr>
           </tbody>
         </table>

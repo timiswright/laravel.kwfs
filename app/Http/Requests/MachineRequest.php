@@ -25,7 +25,7 @@ class MachineRequest extends Request
     {
         return [
             'customer_id' => 'required',
-            'serial' => 'required|unique:machines,serial',
+            'serial' => 'required',
             'sold_date' => 'required',
             'bucket_id' => 'required',
             'bracket_id' => 'required',
