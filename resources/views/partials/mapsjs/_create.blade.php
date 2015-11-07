@@ -5,7 +5,7 @@ var marker = false;
 function initAutocomplete() {
  var map = new google.maps.Map(document.getElementById('map'), {
    center: {lat: 51.45400691005981, lng: -0.1318359375},
-   zoom: 10,
+   zoom: 3,
    mapTypeId: google.maps.MapTypeId.ROADMAP
  });
 
@@ -126,4 +126,5 @@ searchBox.addListener('places_changed', function() {
 }
 </script>
 ​
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBC-k-Uwj6Fkbg1p9TurD_SJZJF58aWm9o&libraries=places&callback=initAutocomplete"></script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ env('MAPS_API') }}&libraries=places&callback=initAutocomplete"></script>

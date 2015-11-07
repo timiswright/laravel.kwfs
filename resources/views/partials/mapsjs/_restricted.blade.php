@@ -32,5 +32,5 @@ function initAutocomplete() {
 </script>
 
 <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBC-k-Uwj6Fkbg1p9TurD_SJZJF58aWm9o&libraries=places&callback=initAutocomplete">
+      src="https://maps.googleapis.com/maps/api/js?key={{ env('MAPS_API') }}&libraries=places&callback=initAutocomplete">
 </script>

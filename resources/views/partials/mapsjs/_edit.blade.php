@@ -159,4 +159,4 @@ google.maps.event.addListener(map, 'click', function(event) {
 }
 </script>
 ​
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBC-k-Uwj6Fkbg1p9TurD_SJZJF58aWm9o&libraries=places&callback=initAutocomplete"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ env('MAPS_API') }}&libraries=places&callback=initAutocomplete"></script>
