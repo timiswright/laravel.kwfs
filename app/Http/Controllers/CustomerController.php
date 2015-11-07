@@ -80,7 +80,7 @@ class CustomerController extends Controller {
     $input = $request->all();
     $record = Customer::create($input);
     flash()->success('Success!', 'The customer has been created!');
-    return redirect('/customers');
+    return redirect()->route('customers.show', ['id' => $record->id]);
    } 
 
 
@@ -146,7 +146,7 @@ class CustomerController extends Controller {
     
         flash()->success('Success!', 'The customer has been updated!');
     
-        return redirect()->route('customers.index');
+        return redirect()->route('customers.show', ['id' => $customer->id]);
     }
 
     /**
