@@ -73,6 +73,32 @@
         <div class="row col-md-12">
             <hr width="80%">
         </div>
+        
+{!! Form::model($customer, [
+    'method' => 'PATCH',
+    'route' => ['customers.update', $customer['id']],
+    'class' => 'form-horizontal'
+]) !!}                                 
+​
+{!! Form::token() !!}
+  <div class="row col-md-12">
+    <div class="row">
+      <div class="col-sm-1">&nbsp;</div>
+      <div class="col-sm-1">
+        {!! Form::label('notes', 'Notes:', ['class' => 'col-sm-1 control-label']) !!}
+      </div>
+      <div class="col-sm-8">
+        {!! Form::textarea('notes', $customer->notes, ['class' => 'form-control', 'placeholder' => 'Notes', 'rows' => '5']) !!}
+      </div>
+      {!! Form::submit('Update', ['class' => 'btn btn-warning']) !!}
+    </div>
+  </div>
+{!! Form::close() !!}
+
+        <div class="row col-md-12">
+            <hr width="80%">
+        </div>
+
         <div class="row col-md-12">
             <div class="form-group">    
                 <div id="map"></div>    
@@ -81,6 +107,7 @@
         <div class="row col-md-12">
             <hr width="80%">
         </div>
+      
         <div class="row col-md-12">
             <a href="{{ route('customers.index') }}" class="btn btn-info">Back</a>
             <a href="{{ route('customers.edit', $customer->id) }}" class="btn btn-primary">Edit</a>

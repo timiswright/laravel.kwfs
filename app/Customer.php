@@ -28,7 +28,8 @@ class Customer extends Model
                 'email',
                 'phone',
                 'mobile',
-                'latlng'];
+                'latlng',
+                'notes'];
 
     /**
      * Always capitalize the company name when we save it to the database

@@ -114,9 +114,18 @@
           <small class="text-danger">{{ $errors->first('mobile') }}</small>
       </div>
     </div>
-  </div>
-</div>
 
+    <div class="row">
+      <div class="col-sm-2">
+        {!! Form::label('notes', 'Notes:', ['class' => 'col-sm-1 control-label']) !!}
+      </div>
+      <div class="col-sm-8">
+        {!! Form::textarea('notes', null, ['class' => 'form-control', 'placeholder' => 'Notes', 'rows' => '5']) !!}
+          <small class="text-danger">{{ $errors->first('notes') }}</small>
+      </div>
+    </div>
+</div>
+<div>&nbsp;</div>
 <hr width="80%"> 
   <div class="form-group">     
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
