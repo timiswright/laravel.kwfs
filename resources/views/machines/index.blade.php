@@ -3,7 +3,7 @@
 @include('partials.alerts.errors')
 
 @if( !count($filteredMachines) )                                    
-    <div class="alert alert-warning" role="alert">You have not sold any machines yet. Get selling!!</div>                                    
+    <div class="alert alert-warning" role="alert">No Matches  </div>                                    
 @else
 
 <span class="span3">

@@ -69,6 +69,9 @@ class Machine extends Model
         'motor_id',
         'sold_date',
         'notes',
+        'measurement1',
+        'measurement2',
+        'invoice'
     ];
 
     /**

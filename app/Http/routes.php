@@ -32,14 +32,17 @@ Route::group(['middleware' => 'auth'], function () {
         
         Route::resource('customers', 'CustomerController'); 
         Route::get('customers/locations/fullscreen', 'CustomerController@showallfull');
-        Route::get('customers/quotes/fullscreen', 'CustomerController@showallsalesfull'); 
+        Route::get('customers/quotes/fullscreen', 'CustomerController@showallsalesfull');
+
         Route::resource('augers', 'AugerController');
         Route::resource('brackets', 'BracketController');
         Route::resource('motors', 'MotorController');
-        
-   
+            
+        Route::patch('machines/notesupdate', ['uses' => 'MachineController@notesupdate', 'as' => 'machines.notesUpdate']);
+        Route::get('machines/{id}/edit/move', ['uses' => 'MachineController@moveMachine', 'as' => 'machines.moveMachine']);
+        Route::patch('machines/move', ['uses' => 'MachineController@moveMachineSave', 'as' => 'machines.moveMachineSave']);
         Route::resource('machines', 'MachineController');
-        
+
         Route::resource('buckets', 'BucketController');
         Route::resource('extras', 'ExtraController');
 

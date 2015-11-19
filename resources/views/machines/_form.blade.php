@@ -59,26 +59,27 @@
         &nbsp;
     </div>
     <div class="col-md-4">
+    &nbsp;
         <table class="table table-sm table-striped">
           <tbody>
             @foreach ($extras as $type => $list)
             <tr>
+            <td>
+
+                @foreach( $myextras as $extra)
+                    @if( $type == $extra['extra_type'] )  
+                       <?php $selected_id = $extra['id']; ?>
+                    @endif
+                @endforeach  
+            </td>
               <td>{!! Form::label('extras-'.str_slug($type), $type) !!}</td>
-              <td>{!! Form::select('extras[]', collect($list)->lists('extra_value', 'id'), null, ['id' => 'extras-'.str_slug($type)]) !!}</td>
+              <td>{!! Form::select('extras[]', collect($list)->lists('extra_value', 'id'), $selected_id, ['id' => 'extras-'.str_slug($type)]) !!}</td>
             </tr>
             @endforeach
           </tbody>
         </table>
-    </div>
-    <div class="col-md-1">
-        &nbsp;
-    </div>
-    <div class="row col-md-12">
-        <div class="form-group @if($errors->first('notes')) has-error @endif">
-            {!! Form::label('notes', 'Extra Notes') !!}
-            {!! Form::textarea('notes', null, ['class' => 'form-control']) !!}
-            <small class="text-danger">{{ $errors->first('notes') }}</small>
-        </div>
-    </div>
+
+        
+        
 
     

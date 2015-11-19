@@ -50,6 +50,7 @@ class MachineController extends Controller
     // our articles titles. Paginates them so we can break up lots of search results.
     $machines = Machine::orderBy('serial', 'asc')
                   ->where('serial', 'LIKE', '%' . $request->search . '%')
+                  ->orWhere('id', 'LIKE', '%' . $request->search . '%')
                   ->get();
         
     // returns a view and passes the view the list of articles and the original query.
@@ -107,7 +108,7 @@ class MachineController extends Controller
      */
     public function store(MachineRequest $request)
     {
-        $machine_id = Machine::create($request->only('customer_id', 'serial', 'sold_date', 'bucket_id', 'bracket_id', 'auger_id', 'motor_id', 'notes'))->id;
+        $machine_id = Machine::create($request->only('customer_id', 'serial', 'sold_date', 'bucket_id', 'bracket_id', 'auger_id', 'motor_id', 'notes', 'invoice', 'measurement1', 'measurement2'))->id;
 
         $machine = Machine::findOrFail($machine_id);
         
@@ -161,12 +162,14 @@ class MachineController extends Controller
         $brackets = Bracket::lists('bracket_type', 'id');
         $buckets = Bucket::lists('bucket_type', 'id');
         $motors = Motor::lists('motor_type', 'id');
-        //$extras = Machine::findOrFail($id)->extra()->get();
         
         $extras = [];
             foreach (Extra::orderBy('extra_value')->get() as $extra) {
         $extras[$extra->extra_type][] = $extra;
         }
+
+        // Just Added this to get the extras that this machine has...
+        $myextras = Machine::findOrFail($id)->extras()->get();
 
         $data = [
             'augers' => $augers->toArray(),
@@ -174,6 +177,7 @@ class MachineController extends Controller
             'buckets' => $buckets->toArray(),
             'motors' => $motors->toArray(),
             'extras' => $extras,
+            'myextras' => $myextras,
             ];
 
         return view('machines.edit', $data)->withMachine($machine)->withCustomers($customers);
@@ -190,7 +194,7 @@ class MachineController extends Controller
     {
         $machine = Machine::findOrFail($id);
 
-        $machine->fill($request->only('customer_id', 'serial', 'sold_date', 'bucket_id', 'bracket_id', 'auger_id', 'motor_id', 'notes'));
+        $machine->fill($request->only('customer_id', 'serial', 'sold_date', 'bucket_id', 'bracket_id', 'auger_id', 'motor_id', 'notes', 'invoice', 'measurement1', 'measurement2'));
         $machine->save();
         $machine->extras()->sync($request->input('extras'));
     
@@ -198,7 +202,29 @@ class MachineController extends Controller
         //$machine->fill($input)->save();
         flash()->success('Success!', 'The Machine has been updated!');
     
-        return redirect()->route('machines.index');
+        return redirect()->route('customers.show', ['id' => $machine->customer_id]); 
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function notesUpdate(Request $request)
+    {
+        $machine = Machine::findOrFail($request->id);
+
+        $this->validate($request, [
+            'notes' => 'required'
+        ]);
+        $input = $request->all();
+        $machine->fill($input)->save();
+
+        flash()->success('Success!', 'The Machine Notes have been updated!');
+        
+        return redirect()->route('machines.show', ['id' => $machine->id]);
     }
 
     /**
@@ -214,6 +240,54 @@ class MachineController extends Controller
         flash()->success('Deleted!', 'The Machine has been deleted!');
         return redirect()->route('customers.show', ['id' => $machine->customer_id]); 
     
+    }
+
+    /**
+     * Lets move a bucket
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function moveMachine($id)
+    {
+        $machine = Machine::findOrFail($id);
+        //$customers = Customer::lists('company', 'id');
+        
+        $customers = Customer::OrderBy('company')->get(['id', 'company', 'postcode', 'town', 'building'])->keyBy('id')->map(function ($customer) {
+            return $customer->company.' - '.$customer->building.' - '.$customer->town.' - '.$customer->postcode.' - '.$customer->id;
+        });
+
+        $data = [
+            'customers' => $customers->toArray(),
+            ];
+
+        return view('machines.move', $data)->withMachine($machine);
+    }
+
+    /**
+     * Lets move a bucket
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function moveMachineSave(Request $request)
+    {
+
+        $machine = Machine::findOrFail($request->id);
+
+        $this->validate($request, [
+            'id' => 'required',
+            'customer_id' => 'required'
+        ]);
+
+        $input = $request->all();
+        $machine->fill($input)->save();
+
+        flash()->success('Success!', 'The Machine has been realocated!');
+        
+        return redirect()->route('customers.show', ['id' => $machine->customer_id]);
+
+        
     }
 
 }

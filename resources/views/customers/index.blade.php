@@ -3,7 +3,7 @@
 @include('partials.alerts.errors')
 
 @if( !count($customers) )                                    
-    <div class="alert alert-warning" role="alert">You have no customers yet. You better go find some!! <a href="{{url('customers/create')}}">Create new record</a></div>                                    
+    <div class="alert alert-warning" role="alert">No Matches  -  <a href="{{url('customers/create')}}">Create new record</a></div>                                    
 @else
 
 <div class="btn-toolbar pull-right" role="toolbar">

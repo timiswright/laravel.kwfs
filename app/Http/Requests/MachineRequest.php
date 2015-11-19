@@ -30,7 +30,7 @@ class MachineRequest extends Request
             'bucket_id' => 'required',
             'bracket_id' => 'required',
             'auger_id' => 'required',
-            'motor_id' => 'required',
+            'motor_id' => 'required'
         ];
     }
 }
