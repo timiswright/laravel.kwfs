@@ -64,7 +64,7 @@
 </div>
 
 
- <a href="{{ route('customers.show', $machine->customer_id) }}" class="btn btn-info">Back!!</a>
+ <a href="{{ route('customers.show', $machine->customer_id) }}" class="btn btn-info">Back</a>
 <a href="{{ route('machines.edit', $machine->id) }}" class="btn btn-primary">Edit</a>
     <div class="pull-right">  
         {!! Form::open([

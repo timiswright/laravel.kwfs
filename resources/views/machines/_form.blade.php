@@ -65,12 +65,15 @@
             @foreach ($extras as $type => $list)
             <tr>
             <td>
-
+               @if(isset($myextras)) 
                 @foreach( $myextras as $extra)
                     @if( $type == $extra['extra_type'] )  
                        <?php $selected_id = $extra['id']; ?>
                     @endif
-                @endforeach  
+                @endforeach
+               @else
+                <?php $selected_id = 'null'; ?>
+               @endif 
             </td>
               <td>{!! Form::label('extras-'.str_slug($type), $type) !!}</td>
               <td>{!! Form::select('extras[]', collect($list)->lists('extra_value', 'id'), $selected_id, ['id' => 'extras-'.str_slug($type)]) !!}</td>
